@@ -10,39 +10,40 @@
     <div class="container">
       <div class="calc">
         <div class="calc__display">
-          <p class="calc__display-txt">1234567890</p>
+          <p class="calc__display-txt"></p>
         </div>
         <div class="calc__buttons">
           <div class="calc__buttons-row">
-            <button class="calc__btn">C</button>
-            <button class="calc__btn">&LeftArrow;</button>
+            <button class="calc__btn key-clear">C</button>
+            <button class="calc__btn key-delete">DEL</button>
           </div>
           <div class="calc__buttons-row">
-            <button class="calc__btn">7</button>
-            <button class="calc__btn">8</button>
-            <button class="calc__btn">9</button>
-            <button class="calc__btn">&div;</button>
+            <button class="calc__btn key-num" value="7">7</button>
+            <button class="calc__btn key-num" value="8">8</button>
+            <button class="calc__btn key-num" value="9">9</button>
+            <button class="calc__btn key-opt" value="/">&div;</button>
           </div>
           <div class="calc__buttons-row">
-            <button class="calc__btn">4</button>
-            <button class="calc__btn">5</button>
-            <button class="calc__btn">6</button>
-            <button class="calc__btn">&times;</button>
+            <button class="calc__btn key-num" value="4">4</button>
+            <button class="calc__btn key-num" value="5">5</button>
+            <button class="calc__btn key-num" value="6">6</button>
+            <button class="calc__btn key-opt" value="*">&times;</button>
           </div>
           <div class="calc__buttons-row">
-            <button class="calc__btn">1</button>
-            <button class="calc__btn">2</button>
-            <button class="calc__btn">3</button>
-            <button class="calc__btn">&minus;</button>
+            <button class="calc__btn key-num" value="1">1</button>
+            <button class="calc__btn key-num" value="2">2</button>
+            <button class="calc__btn key-num" value="3">3</button>
+            <button class="calc__btn key-opt">&minus;</button>
           </div>
           <div class="calc__buttons-row">
-            <button class="calc__btn">0</button>
-            <button class="calc__btn">.</button>
-            <button class="calc__btn">&equals;</button>
-            <button class="calc__btn">&plus;</button>
+            <button class="calc__btn key-num" value="0">0</button>
+            <button class="calc__btn key-dot" value=".">.</button>
+            <button class="calc__btn key-opt" value="=">&equals;</button>
+            <button class="calc__btn key-opt" value="+">&plus;</button>
           </div>
         </div>
       </div>
     </div>
+    <script src="js/script.js"></script>
   </body>
 </html>
