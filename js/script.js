@@ -20,7 +20,7 @@ const operate = (num1, num2, operation) => {
       return num1 * num2;
     case "/":
       if (num2 === 0) {
-        return "ERROR"
+        return "ERROR";
       }
       return num1 / num2;
   }
@@ -46,8 +46,6 @@ calcButtons.addEventListener("click", (event) => {
         currentNumber === "0" ? number : (currentNumber += number);
     }
     updateDisplay();
-
-
     return;
   }
 
@@ -63,15 +61,15 @@ calcButtons.addEventListener("click", (event) => {
       firstOperand = currentValue;
     } else if (currentOperator) {
       const result = operate(firstOperand, currentValue, currentOperator);
-      currentNumber = typeof result === "number" 
-      ?`${parseFloat(result.toFixed(2))}` : result
+      currentNumber =
+        typeof result === "number"
+          ? `${parseFloat(result.toFixed(2))}`
+          : result;
       firstOperand = result;
     }
     currentOperator = operator;
     isWritingMode = false;
     updateDisplay();
-
-
     return;
   }
 
@@ -79,20 +77,20 @@ calcButtons.addEventListener("click", (event) => {
     if (!isWritingMode) {
       currentNumber = "0.";
       isWritingMode = true;
+      updateDisplay();
       return;
     }
     if (!currentNumber.includes(".")) {
       currentNumber += ".";
     }
     updateDisplay();
-
-
     return;
   }
 
   if (target.classList.contains("key-delete")) {
     currentNumber = currentNumber.slice(0, currentNumber.length - 1) || "0";
     updateDisplay();
+    return;
   }
 
   if (target.classList.contains("key-clear")) {
@@ -101,5 +99,6 @@ calcButtons.addEventListener("click", (event) => {
     firstOperand = null;
     isWritingMode = false;
     updateDisplay();
+    return;
   }
 });
