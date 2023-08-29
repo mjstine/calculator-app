@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -47,13 +48,12 @@ table {
 	border-spacing: 0;
 }
 
-* {
-    /* outline: 1px dashed red; */
-}
-
 .container {
+    font-family: 'Open Sans', sans-serif;
     height: 100vh;
     display: flex;
+    flex-direction: column;
+    gap: 16px;
     justify-content: center;
     align-items: center;
     background-color: #222831;
@@ -106,4 +106,14 @@ table {
     text-align: right;
     letter-spacing: 1.25px;
 }
+
+.footer {
+    padding: 16px 0;
+  }
+  
+  .footer__text {
+    color: #eeeeeebf;
+    font-size: 12.8px;
+    text-align: center;
+  }
 
