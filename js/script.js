@@ -1,82 +1,16 @@
-let displayValue = "0";
+let currentNumber = "0";
+let currentOperator = null;
 let firstOperand = null;
-let operator = null;
-let isWaiting = false;
+let isWritingMode = false;
 
-function updateDisplay() {
-  const display = document.querySelector(".calc__display-txt");
-  display.textContent = displayValue;
-}
-updateDisplay();
+const calcDisplay = document.querySelector(".calc__display-txt");
+const calcButtons = document.querySelector(".calc__buttons");
 
-function appendNum(num) {
-  if (isWaiting) {
-    displayValue = num;
-    isWaiting = false;
-  } else {
-    displayValue = displayValue === "0" ? num : (displayValue += num);
-  }
+const updateDisplay = () => {
+  calcDisplay.textContent = currentNumber;
+};
 
-  console.log(`
-  Display value = ${displayValue}
-  1st Operand = ${firstOperand}
-  Operator = ${operator}
-  `);
-}
-
-function appendDecimal(dot) {
-  if (isWaiting) {
-    displayValue = "0.";
-    isWaiting = false;
-
-    console.log(`
-    Display value = ${displayValue}
-    1st Operand = ${firstOperand}
-    Operator = ${operator}
-    `);
-    return;
-  }
-  if (!displayValue.includes(dot)) {
-    displayValue += dot;
-  }
-
-  console.log(`
-  Display value = ${displayValue}
-  1st Operand = ${firstOperand}
-  Operator = ${operator}
-  `);
-}
-
-function handleOpt(opt) {
-  const inputValue = parseFloat(displayValue);
-
-  if (operator && isWaiting) {
-    operator = opt;
-    console.log(`
-    Display value = ${displayValue}
-    1st Operand = ${firstOperand}
-    Operator = ${operator}
-    `);
-    return;
-  }
-  if (firstOperand === null && !isNaN(inputValue)) {
-    firstOperand = inputValue;
-  } else if (operator) {
-    const result = operate(firstOperand, inputValue, operator);
-    displayValue = `${parseFloat(result.toFixed(2))}`
-    firstOperand = result;
-  }
-  isWaiting = true;
-  operator = opt;
-
-  console.log(`
-  Display value = ${displayValue}
-  1st Operand = ${firstOperand}
-  Operator = ${operator}
-  `);
-}
-
-function operate(num1, num2, operation) {
+const operate = (num1, num2, operation) => {
   switch (operation) {
     case "+":
       return num1 + num2;
@@ -85,20 +19,15 @@ function operate(num1, num2, operation) {
     case "*":
       return num1 * num2;
     case "/":
+      if (num2 === 0) {
+        return "ERROR"
+      }
       return num1 / num2;
   }
-
   return num2;
-}
+};
 
-function resetCalc() {
-  displayValue = "0";
-  firstOperand = null;
-  operator = null;
-  isWaiting = false;
-}
-
-const calcButtons = document.querySelector(".calc__buttons");
+updateDisplay();
 calcButtons.addEventListener("click", (event) => {
   const { target } = event;
 
@@ -106,29 +35,71 @@ calcButtons.addEventListener("click", (event) => {
     return;
   }
 
-  if (target.classList.contains("key-opt")) {
-    handleOpt(target.value);
+  if (target.classList.contains("key-num")) {
+    const number = target.value;
+
+    if (!isWritingMode) {
+      currentNumber = number;
+      isWritingMode = true;
+    } else {
+      currentNumber =
+        currentNumber === "0" ? number : (currentNumber += number);
+    }
     updateDisplay();
+
+
+    return;
+  }
+
+  if (target.classList.contains("key-opt")) {
+    const operator = target.value;
+    const currentValue = parseFloat(currentNumber);
+    if (currentOperator !== null && !isWritingMode) {
+      currentOperator = operator;
+      return;
+    }
+
+    if (firstOperand === null) {
+      firstOperand = currentValue;
+    } else if (currentOperator) {
+      const result = operate(firstOperand, currentValue, currentOperator);
+      currentNumber = typeof result === "number" 
+      ?`${parseFloat(result.toFixed(2))}` : result
+      firstOperand = result;
+    }
+    currentOperator = operator;
+    isWritingMode = false;
+    updateDisplay();
+
+
     return;
   }
 
   if (target.classList.contains("key-dot")) {
-    appendDecimal(target.value);
+    if (!isWritingMode) {
+      currentNumber = "0.";
+      isWritingMode = true;
+      return;
+    }
+    if (!currentNumber.includes(".")) {
+      currentNumber += ".";
+    }
     updateDisplay();
-    return;
-  }
 
-  if (target.classList.contains("key-clear")) {
-    resetCalc();
-    updateDisplay();
+
     return;
   }
 
   if (target.classList.contains("key-delete")) {
-    console.log(target);
-    return;
+    currentNumber = currentNumber.slice(0, currentNumber.length - 1) || "0";
+    updateDisplay();
   }
 
-  appendNum(target.value);
-  updateDisplay();
+  if (target.classList.contains("key-clear")) {
+    currentNumber = "0";
+    currentOperator = null;
+    firstOperand = null;
+    isWritingMode = false;
+    updateDisplay();
+  }
 });
