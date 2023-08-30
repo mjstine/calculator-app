@@ -35,7 +35,7 @@ This project was made possible with the help of various resources and inspiratio
 
 To use the Calculator App:
 
-1. Open the [Live Demo](https://example.com/calculator-app-demo) in your web browser.
+1. Open the [Live Demo](https://mjstine.github.io/calculator-app/) in your web browser.
 2. Click the number buttons to input digits for your calculation.
 3. Click the operation buttons (+, -, *, /) to choose the desired arithmetic operation.
 4. Click the "=" button to see the result of your calculation.
