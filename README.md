@@ -4,6 +4,8 @@
 
 - [Introduction](#introduction)
 - [Demo](#demo)
+- [What is the Calculator App Project?](#what-is-the-calculator-app-project)
+- [Why I Started This Project](#why-i-started-this-project)
 - [Acknowledgments](#acknowledgments)
 - [Usage](#usage)
 - [Contributions and Feedback](#contributions-and-feedback)
@@ -23,6 +25,16 @@ By exploring this project, you'll get an understanding of how HTML, CSS, and Jav
 ## Demo
 
 See the Calculator App in action: [Live Demo](https://mjstine.github.io/calculator-app/)
+
+## What is the Calculator App Project?
+
+The Calculator App project is a web application that simulates a basic calculator digitally. It allows users to perform arithmetic calculations such as addition, subtraction, multiplication, and division. The app showcases the implementation of user interface elements, event handling, and mathematical operations using JavaScript.
+
+## Why I Started This Project
+
+As an aspiring web developer, I embarked on the Calculator App project to solidify my understanding of JavaScript and its real-world applications. By building a calculator, I aimed to reinforce my grasp of essential programming concepts, ranging from variable manipulation to handling user interactions.
+
+This project also provided an opportunity to explore the intersection of user interface design and programming logic. As I delved into the complexities of implementing calculator functionality, I deepened my appreciation for the synergy between design and code.
 
 ## Acknowledgments
 
